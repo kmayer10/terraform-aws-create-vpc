@@ -23,7 +23,7 @@ resource "aws_ec2_tag" "tag_default_vpc_resources" {
 
 module "create_public_subnets" {
   count                     = var.vpc.public_subnet_required == false ? 0 : 1 # if public_subnet_required is false, skip the module creation
-  source                    = "kmayer10/create-subnet/aws"                       # location to get the module definition, remote or local, current is LOCAL
+  source                    = "kmayer10/create-subnet/aws"                       # location to get the module definition, remote or local, current is REMOTE
   version                   = "1.0.0"
   subnet_count              = local.az_count
   vpc_id                    = aws_vpc.aws_vpc.id
@@ -34,7 +34,7 @@ module "create_public_subnets" {
 
 module "create_private_subnets" {
   count                = var.vpc.private_subnet_required == false ? 0 : 1 # if private_subnet_required is false, skip the module creation
-  source               = "kmayer10/create-subnet/aws"                       # location to get the module definition, remote or local, current is LOCAL
+  source               = "kmayer10/create-subnet/aws"                       # location to get the module definition, remote or local, current is REMOTE
   version              = "1.0.0"
   subnet_count         = local.az_count
   vpc_id               = aws_vpc.aws_vpc.id
